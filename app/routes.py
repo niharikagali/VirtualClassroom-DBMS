@@ -4,4 +4,14 @@ from app import app
 @app.route('/index')
 def index():
     user = {'username':'Niharika'}
-    return render_template('index.html',title='Home',user=user)
+    notifs = [
+    	{
+    		'author' : {'username':'Niharika'},
+    		'body' : 'Selena Gomez is amazing!'
+    	},
+    	{
+    		'author' : {'username' : 'Reena'},
+    		'body' : '80!'
+    	}
+    ]
+    return render_template('index.html',title='Home',user=user,notifs = notifs)

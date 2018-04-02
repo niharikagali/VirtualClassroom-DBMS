@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h1>Hello, {{user.username}}!</h1>
+	{%for post in notifs%}
+	<div><p>{{post.author.username}} says: <b>{{post.body}}</b></p></div>
+	{% endfor %}
 </body>
 </html>
