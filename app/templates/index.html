@@ -1,15 +1,8 @@
-<html>
-<head>
-	{% if title %}
-	<title>{{ title }} - Virtual Classroom</title>
-	{% else %}
-	<title>Welcome to Virtual Classroom!</title>
-	{% endif %}
-</head>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
 	<h1>Hello, {{user.username}}!</h1>
 	{%for post in notifs%}
 	<div><p>{{post.author.username}} says: <b>{{post.body}}</b></p></div>
 	{% endfor %}
-</body>
-</html>
+{% endblock %}

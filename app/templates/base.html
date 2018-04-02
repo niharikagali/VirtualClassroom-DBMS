@@ -1,0 +1,14 @@
+<html>
+<head>
+	{% if title %}
+	<title>{{ title }} - Virtual Classroom</title>
+	{% else %}
+	<title>Welcome to Virtual Classroom!</title>
+	{% endif %}
+</head>
+<body>
+	<div>Virtual Classroom : <a href="/index">Home</a></div>
+	<hr>
+	{% block content %}{% endblock %}
+</body>
+</html>
