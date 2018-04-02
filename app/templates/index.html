@@ -1,0 +1,12 @@
+<html>
+<head>
+	{% if title %}
+	<title>{{ title }} - Virtual Classroom</title>
+	{% else %}
+	<title>Welcome to Virtual Classroom!</title>
+	{% endif %}
+</head>
+<body>
+	<h1>Hello, {{user.username}}!</h1>
+</body>
+</html>
