@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #!/home/niharika/virtualclass/venv/bin/python3
+=======
+#!/home/niharika/virtualclass/venv/bin/python2
+>>>>>>> 6fecdfa6a9a2fde248a3a3696bfeadfa558dd100
 
 # -*- coding: utf-8 -*-
 import re
@@ -7,5 +11,9 @@ import sys
 from flask.cli import main
 
 if __name__ == '__main__':
+<<<<<<< HEAD
     sys.argv[0] = re.sub(r'(-script\.pyw|\.exe)?$', '', sys.argv[0])
+=======
+    sys.argv[0] = re.sub(r'(-script\.pyw?|\.exe)?$', '', sys.argv[0])
+>>>>>>> 6fecdfa6a9a2fde248a3a3696bfeadfa558dd100
     sys.exit(main())
