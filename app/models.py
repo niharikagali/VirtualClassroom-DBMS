@@ -240,9 +240,15 @@ class Post(SearchableMixin, db.Model):
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     language = db.Column(db.String(5))
+    # parent_id = db.Column(db.Integer, db.ForeignKey('post.id'))
+    # replies = db.relationship('Post', backref=db.backref('parent', remote_side=[id]),
+    #     lazy='dynamic')
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+    
+    # def add_reply(self, text):
+    # return Post(text=text, parent=self)
 
 
 db.event.listen(db.session, 'before_commit', Post.before_commit)
@@ -288,3 +294,12 @@ class Task(db.Model):
     def get_progress(self):
         job = self.get_rq_job()
         return job.meta.get('progress', 0) if job is not None else 100
+
+class Course(db.Model):
+    id = db.Column(db.String(36), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    major = db.Column(db.String(128))
+    courses = db.Column(db.String(360))
+
+    def __repr__(self):
+        return '<Courses {}>'.format(self.courses)    
