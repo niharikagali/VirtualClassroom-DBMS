@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from flask_babel import _, get_locale
 from guess_language import guess_language
 from app import db
-from app.main.forms import EditProfileForm, PostForm, SearchForm, MessageForm
+from app.main.forms import EditProfileForm, PostForm, SearchForm, MessageForm, CourseForm
 from app.models import User, Post, Message, Notification
 from app.translate import translate
 from app.main import bp
@@ -30,9 +30,10 @@ def index():
         if language == 'UNKNOWN' or len(language) > 5:
             language = ''
         post = Post(body=form.post.data, author=current_user,
-                    language=language)
+                    language=language)#, parent = current_user)
         db.session.add(post)
         db.session.commit()
+
         flash(_('Your post is now live!'))
         return redirect(url_for('main.index'))
     page = request.args.get('page', 1, type=int)
@@ -61,6 +62,14 @@ def explore():
                            posts=posts.items, next_url=next_url,
                            prev_url=prev_url)
 
+
+@bp.route('/courses', methods=['GET', 'POST'])
+@login_required
+def courses():
+    form = CourseForm()
+    if form.validate_on_submit():
+        return render_template('course.html',title='Selected Courses',form=form)
+    return render_template('courses.html', title='Selected Courses', form=form)
 
 @bp.route('/user/<username>')
 @login_required
